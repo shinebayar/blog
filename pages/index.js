@@ -13,8 +13,9 @@ import MyNavbar from "components/my-navbar";
 import Intro from "components/intro";
 import ListItem from "components/list-item";
 import GridItem from "components/grid-item";
+import { getAllPosts } from "lib/api";
 
-export default function Home() {
+export default function Home({posts}) {
   return (
     <Container>
       <MyNavbar />
@@ -26,6 +27,7 @@ export default function Home() {
         </Row>
 
         <hr />
+        <pre>{JSON.stringify(posts, 0, 2)}</pre>
 
         <div className={`page-wrapper`}>
           <Row className="mb-5">
@@ -33,29 +35,12 @@ export default function Home() {
               <ListItem />
             </Col>
 
-            <Col md="4">
-              <GridItem />
-            </Col>
-
-            <Col md="4">
-              <GridItem />
-            </Col>
-
-            <Col md="4">
-              <GridItem />
-            </Col>
-
-            <Col md="4">
-              <GridItem />
-            </Col>
-
-            <Col md="4">
-              <GridItem />
-            </Col>
-
-            <Col md="4">
-              <GridItem />
-            </Col>
+            {posts.map(post => (
+              <Col md="4" key={post.title}>
+                <GridItem post={post}/>
+              </Col>
+            ))}
+            
           </Row>
         </div>
       </div>
@@ -70,4 +55,13 @@ export default function Home() {
       </footer>
     </Container>
   );
+}
+
+export const getStaticProps = async () =>{
+  const posts = await getAllPosts();
+  return {
+    props: {
+      posts,
+    }
+  }
 }
