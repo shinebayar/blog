@@ -1,7 +1,14 @@
 import { Card } from "react-bootstrap";
 import Link from 'next/link';
+import moment from 'moment';
+import { useEffect } from "react";
 
-export default ({post}) => {
+export default function gridItem({post}) {
+
+  useEffect(() => {
+    moment.locale("mn");
+  }, [])
+
   return (
     <Card className={`fj-card`}>
       <div className="card-body-wrapper">
@@ -17,7 +24,7 @@ export default ({post}) => {
             <Card.Title className="font-weight-bold mb-1">
               {post.publisher.name}
             </Card.Title>
-            <Card.Text className="card-date">{post.date}</Card.Text>
+            <Card.Text className="card-date">{moment(post.date).endOf('day').fromNow()}</Card.Text>
           </div>
         </Card.Header>
         <Link href={`/${post.slug}`}>

@@ -1,6 +1,6 @@
 import { Navbar, Nav } from "react-bootstrap";
 
-export default () => {
+export default function NavbarCustom () {
   return (
     <Navbar className="fj-navbar fj-nav-base" bg="transparent" expand="lg">
       <Navbar.Brand className="fj-navbar-brand">
