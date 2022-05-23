@@ -2,6 +2,7 @@ import { Card } from "react-bootstrap";
 import Link from 'next/link';
 import moment from 'moment';
 import { useEffect } from "react";
+import { urlFor } from 'lib/api'
 
 export default function gridItem({post}) {
 
@@ -14,10 +15,8 @@ export default function gridItem({post}) {
       <div className="card-body-wrapper">
         <Card.Header className="d-flex flex-row">
           <img
-            src={post.publisher.picture}
+            src={urlFor(post.publisher.picture).height(50)}
             className="rounded-circle mr-3"
-            height="50px"
-            width="50px"
             alt="avatar"
           />
           <div>
@@ -30,7 +29,7 @@ export default function gridItem({post}) {
         <Link href={`/${post.slug}`}>
           <a>
             <div className="view overlay">
-              <Card.Img src={post.image} alt={post.title} />
+              <Card.Img src={urlFor(post.image).height(300).url()} alt={post.title} />
             </div>
             <Card.Body>
               <Card.Title className="card-main-title">{post.title}</Card.Title>

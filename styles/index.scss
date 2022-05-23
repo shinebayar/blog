@@ -216,7 +216,17 @@ body {
 .blog-image {
   margin-bottom: 10px;
   text-align: center;
+  
+  &-left{
+    float: left;
+    margin-right: 3px;
+  }
+  &-right{
+    float: right;
+    margin-left: 3px;
+  }
 }
+
 .image-alt {
   margin-top: 3px;
 }

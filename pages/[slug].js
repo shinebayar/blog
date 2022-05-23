@@ -3,6 +3,7 @@ import Layout from "components/layout";
 import { getAllPosts, getPostBySlug } from "lib/api";
 import BlockContent from '@sanity/block-content-to-react'
 import HighlightCode from 'components/highlightCode';
+import { urlFor } from 'lib/api';
 
 const serializers = {
   types: {
@@ -14,9 +15,9 @@ const serializers = {
       </HighlightCode>
     ),
     image: (props) => (
-      <div>
+      <div className={`blog-image blog-image-${props.node.position}`}>
         {/* <pre>{JSON.stringify(props, null, 2)}</pre> */}
-        <img src={props.node.asset.url} />
+        <img src={urlFor(props.node).height(400).url()} />
         <div className='code-filename' style={{textAlign:'center'}}>{props.node.alt}</div>
       </div>
     ),
@@ -50,7 +51,7 @@ export default function Post ({post}) {
               {post.subtitle}
             </h2>
 
-            <img className="img-fluid rounded" src={post.cover_image.url} alt={post.cover_image.alt} />
+            <img className="img-fluid rounded" src={urlFor(post.cover_image).height(500).url()} alt={post.cover_image.alt} />
             <div className='code-filename' style={{textAlign:'center'}}>{post.cover_image.alt}</div>
           </div>
           <br />
