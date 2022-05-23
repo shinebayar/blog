@@ -1,7 +1,7 @@
 import hljs from "highlight.js";
 import { createRef, useEffect } from "react";
 
-export default ({ children, language }) => {
+export default function HighlightCode({ children, language }) {
   const codeRef = createRef();
 
   useEffect(() => {

@@ -4,7 +4,7 @@ import moment from 'moment';
 import { useEffect } from "react";
 import { urlFor } from 'lib/api'
 
-export default function gridItem({post}) {
+export default function GridItem({post}) {
 
   useEffect(() => {
     moment.locale("mn");
