@@ -216,6 +216,16 @@ body {
 .blog-image {
   margin-bottom: 10px;
   text-align: center;
+
+  &-left {
+    float: left;
+    margin-right: 30px;
+  }
+
+  &-right {
+    float: right;
+    margin-left: 30px;
+  }
 }
 .image-alt {
   margin-top: 3px;
@@ -306,7 +316,3 @@ body {
     color: #63696e;
   }
 }
-
-
-
-// Custom added
