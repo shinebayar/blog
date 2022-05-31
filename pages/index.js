@@ -1,13 +1,15 @@
+import { useSWRInfinite } from "swr";
 import { Row, Col, Button } from "react-bootstrap";
+
 import GridItem from "components/grid-item";
 import { getPaginatedPosts } from "lib/api";
 import Layout from "components/layout";
 import Intro from "components/intro";
-import { useSWRInfinite } from "swr";
+import PreviewAlert from 'components/preview-alert';
 
 const PAGE_LIMIT = 3;
 
-export default function Home({ posts }) {
+export default function Home({ posts, preview }) {
   const { data, size, setSize } = useSWRInfinite(
     (index) => `/api/posts?page=${index}&limit=${PAGE_LIMIT}`
   );
@@ -15,6 +17,7 @@ export default function Home({ posts }) {
   return (
     <Layout>
       <Row>
+        <pre>{ preview && <PreviewAlert /> }</pre>
         <Col md="12">
           <Intro />
         </Col>
@@ -40,12 +43,13 @@ export default function Home({ posts }) {
   );
 }
 
-export const getStaticProps = async () => {
+export const getStaticProps = async ({ preview=false }) => {
   const posts = await getPaginatedPosts(1, PAGE_LIMIT);
 
   return {
     props: {
       posts,
+      preview
     },
   };
 };
