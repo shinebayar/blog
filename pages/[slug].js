@@ -1,16 +1,29 @@
 import { Row, Col } from "react-bootstrap";
 import BlockContent from "@sanity/block-content-to-react";
 import { useRouter } from 'next/router';
+import { useEffect, useState } from "react";
 
 
 import Layout from "components/layout";
-import { getPostBySlug, getAllPosts } from "lib/api";
+import { getPostBySlug, getAllPosts, listenPostUpdate } from "lib/api";
 import HiglightCode from "components/higlight-code";
 import { urlFor } from "lib/api";
 import PostHeader from "components/post-header";
 import PreviewAlert from 'components/preview-alert';
 
-export default ({ post, preview }) => {
+export default ({ post: initialPost, preview }) => {
+
+  const [post, setPost] = useState(initialPost);
+
+  // useEffect( () => {
+  //   const sub = listenPostUpdate(post.slug, (update)=> {
+  //     console.log(update);
+  //     // debugger;
+  //     setPost(update.result);
+
+  //     return sub && sub.unsubscribe?.();
+  //   })
+  // }, [] )
 
   const router = useRouter();
 
@@ -73,7 +86,7 @@ export const getStaticProps = async ({ params, preview = false }) => {
     props: {
       post: post.length > 1 ? post[1] : post.length > 0 ? post[0] : {},
       preview,
-    },
+    }
   };
 };
 

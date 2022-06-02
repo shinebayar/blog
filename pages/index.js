@@ -10,7 +10,7 @@ import PreviewAlert from 'components/preview-alert';
 const PAGE_LIMIT = 3;
 
 export default function Home({ posts, preview }) {
-  const { data, size, setSize } = useSWRInfinite(
+  const { data, size, setSize, isValidating } = useSWRInfinite(
     (index) => `/api/posts?page=${index}&limit=${PAGE_LIMIT}`, { initialData: [posts] }
   );
 
@@ -35,7 +35,8 @@ export default function Home({ posts, preview }) {
       </Row>
       <div style={{ textAlign: "center" }}>
         {data[data.length - 1].length !== 0 && (
-          <Button onClick={() => setSize(size + 1)}>Цааш нь ...</Button>
+          isValidating ? <div style={{fontSzie:12}}>Please wait ...</div> : 
+          <Button onClick={() => setSize(size + 1)}>load more ...</Button>
         )}
       </div>
     </Layout>
@@ -50,7 +51,6 @@ export const getStaticProps = async ({ preview=false }) => {
     props: {
       posts,
       preview
-    },
-    revalidate: 10,
+    }
   };
 };

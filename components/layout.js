@@ -15,11 +15,11 @@ export default ({ children }) => {
 
       <footer className="page-footer">
         <div>
-          <a href="#">нүүр</a>
+          <a href="#">home</a>
           {" | "}
-          <a href="#">сургалт</a>
+          <a href="#">facebook</a>
           {" | "}
-          <a href="#">фэйсбүүк</a>
+          <a href="#">twitter</a>
         </div>
       </footer>
     </Container>

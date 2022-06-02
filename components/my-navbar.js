@@ -14,7 +14,7 @@ export default () => {
       <Navbar.Brand className="fj-navbar-brand">
         <Link href="/">
           <a style={{ color: theme.fontColor }}>
-            1234 БЛОГ
+            1234 BLOG
           </a>
         </Link>
       </Navbar.Brand>
@@ -32,7 +32,7 @@ export default () => {
             />
           </label>
           <Nav.Link className="fj-navbar-item fj-navbar-link" href="/">
-            НҮҮР
+            HOME
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>

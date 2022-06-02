@@ -1,10 +1,27 @@
 import { SWRConfig } from "swr";
 import "react-toggle/style.css"
+import Router from "next/router";
+import Nprogress from "nprogress";
+import 'nprogress/nprogress.css';
 
 import "styles/index.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "highlight.js/styles/agate.css";
 import { ThemeProvider } from "context/theme-context";
+
+
+Router.onRouteChangeStart = (url) => {
+  console.log(url);
+  Nprogress.start();
+}
+
+Router.onRouteChangeComplete = (url) => {
+  Nprogress.done();
+}
+
+Router.onRouteChangeError = (url) => {
+  Nprogress.done();
+}
 
 const fetcher = async (url) => {
   const res = await fetch(url);
@@ -26,7 +43,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <SWRConfig
       value={{
-        refreshInterval: 3000,
+        refreshInterval: 60 * 1000,
         fetcher,
         onError: (error, key) => {
           if (error.status !== 403 && error.status !== 404) {

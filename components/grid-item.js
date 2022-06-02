@@ -4,7 +4,8 @@ import moment from "moment";
 import { urlFor } from "lib/api";
 
 export default ({ post }) => {
-  moment.locale("mn");
+  moment.locale("en");
+  console.log('==============================: ', post);
 
   return (
     <Card className={`fj-card`}>
