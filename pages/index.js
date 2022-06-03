@@ -35,7 +35,7 @@ export default function Home({ posts, preview }) {
       </Row>
       <div style={{ textAlign: "center" }}>
         {data[data.length - 1].length !== 0 && (
-          isValidating ? <div style={{fontSzie:12}}>Please wait ...</div> : 
+          isValidating ? <div style={{fontSzie:13}}>Please wait ...</div> : 
           <Button onClick={() => setSize(size + 1)}>load more ...</Button>
         )}
       </div>

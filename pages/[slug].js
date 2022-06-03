@@ -91,7 +91,7 @@ export const getStaticProps = async ({ params, preview = false }) => {
 };
 
 export const getStaticPaths = async () => {
-  const posts = await getPaginatedPosts(0, 4);
+  const posts = await getAllPosts();
   return {
     paths: posts.map((post) => ({
       params: {

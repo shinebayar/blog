@@ -10,12 +10,10 @@ export default () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <Navbar className="fj-navbar fj-nav-base" bg="transparent" expand="lg">
+    <Navbar variant={theme.type} className="fj-navbar fj-nav-base" bg="transparent" expand="lg">
       <Navbar.Brand className="fj-navbar-brand">
         <Link href="/">
-          <a style={{ color: theme.fontColor }}>
-            1234 BLOG
-          </a>
+          <a style={{ color: theme.fontColor }}>1234 BLOG</a>
         </Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -26,13 +24,24 @@ export default () => {
               className="day-night-toggle"
               onChange={toggleTheme}
               icons={{
-                checked: <FontAwesomeIcon icon={ theme.type === 'dark' ? faMoon : faSun } />,
-                unchecked: <FontAwesomeIcon inverse icon={ theme.type === 'light' ? faSun : faMoon } />,
+                checked: (
+                  <FontAwesomeIcon
+                    icon={theme.type === "dark" ? faMoon : faSun}
+                  />
+                ),
+                unchecked: (
+                  <FontAwesomeIcon
+                    inverse
+                    icon={theme.type === "light" ? faSun : faMoon}
+                  />
+                ),
               }}
             />
           </label>
-          <Nav.Link className="fj-navbar-item fj-navbar-link" href="/">
-            HOME
+          <Nav.Link href="/">
+            <Link href="/">
+              <a className="fj-navbar-item fj-navbar-link" style={{ color: theme.fontColor }}>HOME</a>
+            </Link>
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>
