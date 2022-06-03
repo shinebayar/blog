@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 
 import Layout from "components/layout";
-import { getPostBySlug, getAllPosts, listenPostUpdate } from "lib/api";
+import { getPostBySlug, getAllPosts, listenPostUpdate, getPaginatedPosts } from "lib/api";
 import HiglightCode from "components/higlight-code";
 import { urlFor } from "lib/api";
 import PostHeader from "components/post-header";
@@ -80,7 +80,7 @@ const serializers = {
 };
 
 export const getStaticProps = async ({ params, preview = false }) => {
-  console.log(preview);
+  // console.log(preview);
   const post = await getPostBySlug(params.slug, preview);
   return {
     props: {
@@ -91,7 +91,7 @@ export const getStaticProps = async ({ params, preview = false }) => {
 };
 
 export const getStaticPaths = async () => {
-  const posts = await getAllPosts();
+  const posts = await getPaginatedPosts(0, 4);
   return {
     paths: posts.map((post) => ({
       params: {

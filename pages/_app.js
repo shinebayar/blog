@@ -43,7 +43,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <SWRConfig
       value={{
-        refreshInterval: 60 * 1000,
+        refreshInterval: 3 * 60 * 1000,
         fetcher,
         onError: (error, key) => {
           if (error.status !== 403 && error.status !== 404) {

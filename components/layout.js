@@ -15,7 +15,7 @@ export default ({ children }) => {
 
       <footer className="page-footer">
         <div>
-          <a href="#">home</a>
+          <a href="/">home</a>
           {" | "}
           <a href="#">facebook</a>
           {" | "}

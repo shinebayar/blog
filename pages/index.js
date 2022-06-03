@@ -2,7 +2,7 @@ import { useSWRInfinite } from "swr";
 import { Row, Col, Button } from "react-bootstrap";
 
 import GridItem from "components/grid-item";
-import { getPaginatedPosts } from "lib/api";
+import { getPaginatedPosts, getAllPosts } from "lib/api";
 import Layout from "components/layout";
 import Intro from "components/intro";
 import PreviewAlert from 'components/preview-alert';
@@ -23,7 +23,7 @@ export default function Home({ posts, preview }) {
         </Col>
       </Row>
       <hr />
-      <pre>{/*JSON.stringify(data, null, 2)*/}</pre>
+      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
       <Row className="mb-5">
         {data.map((page) =>
           page.map((post) => (
@@ -45,7 +45,7 @@ export default function Home({ posts, preview }) {
 
 export const getStaticProps = async ({ preview=false }) => {
   const posts = await getPaginatedPosts(0, PAGE_LIMIT);
-  console.log('index.html builded again ...............');
+  // console.log('index.html builded again ...............');
 
   return {
     props: {
